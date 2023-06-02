@@ -4,9 +4,9 @@ metadata:
   creationTimestamp: "2023-06-02T13:53:04Z"
   generation: 1
   labels:
-    app: web-tempo
-  name: web-tempo
-  namespace: challenge-tempo
+    app: web-tenpo
+  name: web-tenpo
+  namespace: challenge-tenpo
   resourceVersion: "660"
   uid: 49426703-156a-4a95-9c2f-a9aa55d61310
 spec:
@@ -15,7 +15,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: web-tempo
+      app: web-tenpo
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -25,7 +25,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: web-tempo
+        app: web-tenpo
     spec:
       containers:
       - image: nginx

@@ -3,25 +3,25 @@ kind: Ingress
 metadata:
   creationTimestamp: "2023-06-02T14:14:21Z"
   generation: 1
-  name: web-tempo
-  namespace: challenge-tempo
+  name: web-tenpo
+  namespace: challenge-tenpo
   resourceVersion: "1710"
   uid: 5087fff6-382b-4421-996e-7b8514019ae6
 spec:
   rules:
-  - host: challenge-tempo.com
+  - host: challenge-tenpo.com
     http:
       paths:
       - backend:
           service:
-            name: web-tempo
+            name: web-tenpo
             port:
               number: 443
         path: /
         pathType: Exact
   tls:
   - hosts:
-    - challenge-tempo.com
-    secretName: tempo-cert
+    - challenge-tenpo.com
+    secretName: tenpo-cert
 status:
   loadBalancer: {}

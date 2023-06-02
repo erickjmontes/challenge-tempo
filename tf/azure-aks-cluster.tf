@@ -1,17 +1,22 @@
+# Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "tempo" {
-  name     = "tempo-resources"
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "tenpo" {
+  name     = "tenpo-resources"
   location = "Brazil South"
 }
 
 resource "azurerm_kubernetes_cluster" "aks-lab01" {
-  name                = "tempo-aks1"
-  location            = azurerm_resource_group.tempo.location
-  resource_group_name = azurerm_resource_group.tempo.name
-  dns_prefix          = "lab.tempo.cl"
+  name                = "tenpo-aks1"
+  location            = azurerm_resource_group.tenpo.location
+  resource_group_name = azurerm_resource_group.tenpo.name
+  dns_prefix          = "lab.tenpo.cl"
 
   default_node_pool {
     name       = "default"
