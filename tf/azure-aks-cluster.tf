@@ -7,9 +7,10 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "tenpo" {
-  name     = "tenpo-resources"
-  location = "Brazil South"
+resource "azurerm_resource_group" "tenpo-aks" {
+  name                = "rg-tenpo-aks"
+  location            = "East US"
+  resource_group_name = "tenpo-resource-group"
 }
 
 resource "azurerm_kubernetes_cluster" "aks-lab01" {

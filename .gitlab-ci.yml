@@ -1,0 +1,36 @@
+stages:
+  - lint
+  - plan
+  - apply
+
+variables:
+  ARM_CLIENT_ID: "CLIENT_ID"
+  ARM_CLIENT_SECRET: "CLIENT_SECRET"
+  ARM_SUBSCRIPTION_ID: "SUBSCRIPTION_ID"
+  ARM_TENANT_ID: "TENANT_ID"
+
+linting:
+  image: hashicorp/terraform:latest
+  stage: lint
+  script:
+    - terraform fmt -recursive -check
+    - terraform validate
+
+security_scan:
+  image: aquasec/trivy
+  stage: lint
+  script:
+    - trivy --exit-code 0 terraform
+
+terraform:
+  image: hashicorp/terraform:latest
+  stage: plan
+  script:
+    - terraform init
+    - terraform plan -out=tfplan
+
+terraform_apply:
+  image: hashicorp/terraform:latest
+  stage: apply
+  script:
+    - terraform apply tfplan

@@ -2,9 +2,10 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "tenpo" {
-  name     = "tenpo-resources"
-  location = "Brazil South"
+resource "azurerm_resource_group" "tenpo-mysql" {
+  name                = "rg-tenpo-mysql"
+  location            = "East US"
+  resource_group_name = "tenpo-resource-group"
 }
 
 resource "azurerm_storage_account" "tenpo-storageaccount" {

@@ -11,17 +11,27 @@ provider "azurerm" {
   features {}
 }
 
+resource "azurerm_user_assigned_identity" "read_only_identity" {
+  name                = "rg-tenpo-read-only-identity"
+  location            = "East US"
+  resource_group_name = "tenpo-resource-group"
+}
+
 # Creacion de usuario
-resource "azuread_user" "new_user" {
-  user_principal_name = "jorge.corola@tenpo.cl"
-  display_name        = "Jorge"
-  mail_nickname       = "jcorola"
-  password            = "BadPassword789-#!"
+resource "azurerm_user" "jorge_user" {
+  name     = "jorge"
+  password = "Password!"
+  mail_alias = "jorge@tenpo.cl"
+  user_principal_name = "jorge@tenpo.cl"
+  identity {
+    type        = "UserAssignedIdentity"
+    identity_id = azurerm_user_assigned_identity.read_only_identity.id
+  }
 }
 
 # Asignamiento de rol
-resource "azurerm_role_assignment" "reader_assignment" {
-  scope                = data.azurerm_subscription.tenpo.id
+resource "azurerm_role_assignment" "assign_read_only_role" {
+  scope                = "/subscriptions/<subscription_id>/resourceGroups/my-resource-group"
   role_definition_name = "Reader"
-  principal_id         = data.azurerm_client_config.jcorola.object_id
+  principal_id         = azurerm_user_assigned_identity.read_only_identity.principal_id
 }
