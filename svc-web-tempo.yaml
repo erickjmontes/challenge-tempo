@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2023-06-02T13:53:49Z"
+  labels:
+    app: web-tempo
+  name: web-tempo
+  namespace: challenge-tempo
+  resourceVersion: "718"
+  uid: 42ab70b6-d3e2-4493-85eb-4d9a78d16995
+spec:
+  clusterIP: 10.98.49.115
+  clusterIPs:
+  - 10.98.49.115
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: web-tempo
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
