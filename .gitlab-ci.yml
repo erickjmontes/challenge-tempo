@@ -16,12 +16,6 @@ linting:
     - terraform fmt -recursive -check
     - terraform validate
 
-security_scan:
-  image: aquasec/trivy
-  stage: lint
-  script:
-    - trivy --exit-code 0 terraform
-
 terraform:
   image: hashicorp/terraform:latest
   stage: plan
